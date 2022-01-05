@@ -4,8 +4,8 @@ class Coordinates {
     required this.lat,
   });
 
-  double lon;
-  double lat;
+  double lon; // City geo location, longitude
+  double lat; // City geo location, latitude
 
   factory Coordinates.fromJson(Map<String, dynamic> json) => Coordinates(
         lon: json["lon"].toDouble(),
