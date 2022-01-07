@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_weather/weather/data/services/location_service.dart';
 import 'package:flutter_weather/weather/data/services/weather_service.dart';
+import 'package:http/http.dart' as http;
 
 class App extends StatefulWidget {
   const App({Key? key}) : super(key: key);
@@ -10,7 +11,7 @@ class App extends StatefulWidget {
 }
 
 class _AppState extends State<App> {
-  final weatherService = WeatherService();
+  final weatherService = WeatherService(http.Client());
 
   final locationService = LocationService();
 
@@ -35,7 +36,7 @@ class _AppState extends State<App> {
                       weatherService.getCurrentWeather(10.682368, -61.5317504),
                   builder: (context, snapshot) {
                     if (snapshot.hasData) {
-                      return Text("The weather is ${snapshot.data.toString()}");
+                      return Text("The weather is ${snapshot.data}");
                     } else if (snapshot.hasError) {
                       return Text("${snapshot.error}");
                     }
@@ -54,7 +55,7 @@ class _AppState extends State<App> {
                   },
                 ),
                 ElevatedButton(
-                  child: Text("Get Location"),
+                  child: const Text("Get Location"),
                   onPressed: () {
                     currentLocation = locationService.getLocation();
                     setState(() {});
