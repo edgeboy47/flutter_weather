@@ -28,17 +28,18 @@ void main() {
 
     group("Valid API response:", () {
       final validData = validResponse;
+      late WeatherService service;
 
       setUp(() {
         when(() => mockResponse.statusCode).thenReturn(200);
         when(() => mockResponse.body).thenReturn(validData);
         when(() => mockClient.get(any())).thenAnswer((_) async => mockResponse);
+        service = WeatherService(mockClient);
       });
       test(
           'Given the weatherService When getCurrentWeather is called Then an object of type WeatherData is returned',
           () async {
         // ARRANGE
-        final service = WeatherService(mockClient);
 
         // ACT
         final response = await service.getCurrentWeather(1, 1);
@@ -51,7 +52,7 @@ void main() {
           'Given the weatherService When getCurrentWeather is called Then the data is parsed correctly',
           () async {
         // ARRANGE
-        final service = WeatherService(mockClient);
+        
         // ACT
         final response = await service.getCurrentWeather(1, 1);
 
@@ -60,11 +61,13 @@ void main() {
             response,
             isA<WeatherData>()
                 .having((weather) => weather.name, 'City Name', 'Saint Clair')
-                .having((weather) => weather.coordinates, 'Coordinates', isA<Coordinates>())
-                .having((weather) => weather.weather, 'Weather', isA<List<Weather>>())
+                .having((weather) => weather.coordinates, 'Coordinates',
+                    isA<Coordinates>())
+                .having((weather) => weather.weather, 'Weather',
+                    isA<List<Weather>>())
                 .having((weather) => weather.main, 'Main Data', isA<MainData>())
-                .having((weather) => weather.sys, 'System Data', isA<SystemData>())
-                );
+                .having((weather) => weather.sys, 'System Data',
+                    isA<SystemData>()));
       });
     });
   });

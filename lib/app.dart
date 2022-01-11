@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_weather/weather/data/services/location_service.dart';
 import 'package:flutter_weather/weather/data/services/weather_service.dart';
 import 'package:http/http.dart' as http;
+import 'package:location/location.dart';
 
 class App extends StatefulWidget {
   const App({Key? key}) : super(key: key);
@@ -13,7 +14,7 @@ class App extends StatefulWidget {
 class _AppState extends State<App> {
   final weatherService = WeatherService(http.Client());
 
-  final locationService = LocationService();
+  final locationService = LocationService(location: Location());
 
   Future? currentWeather;
 

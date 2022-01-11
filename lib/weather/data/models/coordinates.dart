@@ -1,11 +1,13 @@
-class Coordinates {
-  Coordinates({
+import 'package:equatable/equatable.dart';
+
+class Coordinates extends Equatable {
+  const Coordinates({
     required this.lon,
     required this.lat,
   });
 
-  double lon; // City geo location, longitude
-  double lat; // City geo location, latitude
+  final double lon; // City geo location, longitude
+  final double lat; // City geo location, latitude
 
   factory Coordinates.fromJson(Map<String, dynamic> json) => Coordinates(
         lon: json["lon"].toDouble(),
@@ -16,4 +18,7 @@ class Coordinates {
         "lon": lon,
         "lat": lat,
       };
+
+      @override
+  List<Object> get props => [lon, lat];
 }

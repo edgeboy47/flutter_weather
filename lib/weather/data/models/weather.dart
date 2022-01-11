@@ -1,15 +1,17 @@
-class Weather {
-  Weather({
+import 'package:equatable/equatable.dart';
+
+class Weather extends Equatable {
+  const Weather({
     required this.id,
     required this.main,
     required this.description,
     required this.icon,
   });
 
-  int id; // Weather condition id
-  String main; // Group of weather parameters (Rain, Snow, Extreme etc.)
-  String description; // Weather condition within the group
-  String icon; // Weather icon id
+  final int id; // Weather condition id
+  final String main; // Group of weather parameters (Rain, Snow, Extreme etc.)
+  final String description; // Weather condition within the group
+  final String icon; // Weather icon id
 
   factory Weather.fromJson(Map<String, dynamic> json) => Weather(
         id: json["id"],
@@ -24,4 +26,12 @@ class Weather {
         "description": description,
         "icon": icon,
       };
+
+  @override
+  List<Object> get props => [
+        id,
+        main,
+        description,
+        icon,
+      ];
 }

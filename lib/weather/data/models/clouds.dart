@@ -1,9 +1,11 @@
-class Clouds {
-  Clouds({
+import 'package:equatable/equatable.dart';
+
+class Clouds extends Equatable{
+  const Clouds({
     required this.all,
   });
 
-  int all; // Cloudiness, %
+  final int all; // Cloudiness, %
 
   factory Clouds.fromJson(Map<String, dynamic> json) => Clouds(
         all: json["all"],
@@ -12,4 +14,7 @@ class Clouds {
   Map<String, dynamic> toJson() => {
         "all": all,
       };
+
+  @override
+  List<Object> get props => [all];
 }

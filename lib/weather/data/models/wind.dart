@@ -1,13 +1,17 @@
-class Wind {
-  Wind({
+import 'package:equatable/equatable.dart';
+
+class Wind extends Equatable {
+  const Wind({
     required this.speed,
     required this.deg,
     required this.gust,
   });
 
-  double speed; //  Wind speed. Unit Default: meter/sec, Metric: meter/sec, Imperial: miles/hour.
-  int deg; // Wind direction, degrees (meteorological)
-  double gust; // Wind gust. Unit Default: meter/sec, Metric: meter/sec, Imperial: miles/hour
+  final double
+      speed; //  Wind speed. Unit Default: meter/sec, Metric: meter/sec, Imperial: miles/hour.
+  final int deg; // Wind direction, degrees (meteorological)
+  final double
+      gust; // Wind gust. Unit Default: meter/sec, Metric: meter/sec, Imperial: miles/hour
 
   factory Wind.fromJson(Map<String, dynamic> json) => Wind(
         speed: json["speed"].toDouble(),
@@ -20,4 +24,11 @@ class Wind {
         "deg": deg,
         "gust": gust,
       };
+
+  @override
+  List<Object> get props => [
+        speed,
+        deg,
+        gust,
+      ];
 }

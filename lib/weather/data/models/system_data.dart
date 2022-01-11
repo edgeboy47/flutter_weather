@@ -1,5 +1,7 @@
-class SystemData {
-  SystemData({
+import 'package:equatable/equatable.dart';
+
+class SystemData extends Equatable {
+  const SystemData({
     this.type,
     this.id,
     this.message,
@@ -8,12 +10,12 @@ class SystemData {
     required this.sunset,
   });
 
-  int? type;
-  int? id;
-  String? message;
-  String country; // Country code (GB, JP etc.)
-  int sunrise; // Sunrise time, unix, UTC
-  int sunset; // Sunset time, unix, UTC
+  final int? type;
+  final int? id;
+  final String? message;
+  final String country; // Country code (GB, JP etc.)
+  final int sunrise; // Sunrise time, unix, UTC
+  final int sunset; // Sunset time, unix, UTC
 
   factory SystemData.fromJson(Map<String, dynamic> json) => SystemData(
         type: json["type"],
@@ -32,4 +34,11 @@ class SystemData {
         "sunrise": sunrise,
         "sunset": sunset,
       };
+
+  @override
+  List<Object> get props => [
+        country,
+        sunrise,
+        sunset,
+      ];
 }

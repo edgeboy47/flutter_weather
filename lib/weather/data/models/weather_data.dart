@@ -1,3 +1,4 @@
+import 'package:equatable/equatable.dart';
 import 'package:flutter_weather/weather/data/models/clouds.dart';
 import 'package:flutter_weather/weather/data/models/coordinates.dart';
 import 'package:flutter_weather/weather/data/models/main_data.dart';
@@ -5,8 +6,8 @@ import 'package:flutter_weather/weather/data/models/system_data.dart';
 import 'package:flutter_weather/weather/data/models/weather.dart';
 import 'package:flutter_weather/weather/data/models/wind.dart';
 
-class WeatherData {
-  WeatherData({
+class WeatherData extends Equatable {
+  const WeatherData({
     required this.coordinates,
     required this.weather,
     required this.base,
@@ -22,19 +23,19 @@ class WeatherData {
     required this.cod,
   });
 
-  Coordinates coordinates;
-  List<Weather> weather;
-  String base;
-  MainData main;
-  int visibility; // Visibility, meter
-  Wind wind;
-  Clouds clouds;
-  int dt; // Time of data calculation, unix, UTC
-  SystemData sys;
-  int timezone; // Shift in seconds from UTC
-  int id; // City ID
-  String name; // City name
-  int cod;
+  final Coordinates coordinates;
+  final List<Weather> weather;
+  final String base;
+  final MainData main;
+  final int visibility; // Visibility, meter
+  final Wind wind;
+  final Clouds clouds;
+  final int dt; // Time of data calculation, unix, UTC
+  final SystemData sys;
+  final int timezone; // Shift in seconds from UTC
+  final int id; // City ID
+  final String name; // City name
+  final int cod;
 
   factory WeatherData.fromJson(Map<String, dynamic> json) => WeatherData(
         coordinates: Coordinates.fromJson(json["coord"]),
@@ -68,4 +69,21 @@ class WeatherData {
         "name": name,
         "cod": cod,
       };
+
+  @override
+  List<Object> get props => [
+        coordinates,
+        weather,
+        base,
+        main,
+        visibility,
+        wind,
+        clouds,
+        dt,
+        sys,
+        timezone,
+        id,
+        name,
+        cod,
+      ];
 }

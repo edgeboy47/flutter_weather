@@ -12,7 +12,6 @@ class WeatherService {
   final String apiKey =
       '9fdb42837812cea566a3add40712ff8d'; // TODO: To be set in the environment variables
 
-  // TODO: Create unit tests for service functions
   Future<WeatherData?> getCurrentWeather(
       double latitude, double longitude) async {
     try {
@@ -27,7 +26,7 @@ class WeatherService {
       }
       return null;
     } catch (e) {
-      print(e);
+      print('Error getting weather: $e');
     }
   }
 }
