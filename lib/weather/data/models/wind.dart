@@ -13,7 +13,7 @@ class Wind extends Equatable {
   final double
       gust; // Wind gust. Unit Default: meter/sec, Metric: meter/sec, Imperial: miles/hour
 
-  factory Wind.fromJson(Map<String, dynamic> json) => Wind(
+  factory Wind.fromJson(Map<String, dynamic> json) => Wind( 
         speed: json["speed"].toDouble(),
         deg: json["deg"],
         gust: json["gust"].toDouble(),
